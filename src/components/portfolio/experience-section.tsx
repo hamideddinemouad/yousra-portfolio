@@ -2,9 +2,9 @@
 
 import { Experience } from "@/types/portfolio";
 import { motion } from "framer-motion";
+import { DisclosureCard } from "./disclosure-card";
 import { ExperienceItem } from "./experience-item";
-import { fadeUp, staggerGroup } from "./motion";
-import { SectionHeading } from "./section-heading";
+import { staggerGroup } from "./motion";
 
 type ExperienceSectionProps = {
   title: string;
@@ -15,30 +15,29 @@ export function ExperienceSection({
   title,
   experiences,
 }: ExperienceSectionProps) {
+  const preview = `${experiences.length} role${experiences.length > 1 ? "s" : ""} with focus on ${experiences
+    .map((experience) => experience.title)
+    .join(" and ")}.`;
+
   return (
-    <motion.section
-      initial="hidden"
-      animate="show"
-      variants={fadeUp(0.03, 28)}
-      whileHover={{ y: -4 }}
-      className="motion-card paper-card rounded-[1.75rem] p-6 sm:p-7"
+    <DisclosureCard
+      title={title}
+      meta={`${experiences.length} positions`}
+      preview={preview}
     >
-      <div className="space-y-6">
-        <SectionHeading title={title} />
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={staggerGroup(0.08, 0.1)}
-          className="space-y-5"
-        >
-          {experiences.map((experience) => (
-            <ExperienceItem
-              key={`${experience.title}-${experience.period}`}
-              experience={experience}
-            />
-          ))}
-        </motion.div>
-      </div>
-    </motion.section>
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={staggerGroup(0.08, 0.1)}
+        className="space-y-5"
+      >
+        {experiences.map((experience) => (
+          <ExperienceItem
+            key={`${experience.title}-${experience.period}`}
+            experience={experience}
+          />
+        ))}
+      </motion.div>
+    </DisclosureCard>
   );
 }

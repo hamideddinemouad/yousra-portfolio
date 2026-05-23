@@ -33,8 +33,9 @@ export const portfolioData: PortfolioData = {
     },
   },
   summary: [
-    "Yousra combines academic grounding in English studies with practical classroom and one-to-one teaching experience. Her lessons are structured, interactive, and tailored to each learner's pace and goals.",
-    "She supports vocabulary growth, pronunciation, reading comprehension, and spoken confidence through clear instruction, patient feedback, and engaging activities across online and in-person settings.",
+    "Passionate English graduate with teaching experience and strong language skills.",
+    "Skilled in lesson planning, grammar instruction, vocabulary development, pronunciation correction, speaking practice, classroom engagement, and student support.",
+    "Experienced in helping learners improve English communication, comprehension, and confidence through structured, interactive lessons for individuals, groups, online classes, and classroom settings.",
   ],
   experiences: [
     {

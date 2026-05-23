@@ -21,26 +21,21 @@ export default function Home() {
 
       <section
         aria-label="Portfolio details"
-        className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(18rem,0.92fr)_minmax(0,1.28fr)] lg:px-8"
+        className="mx-auto w-full max-w-5xl space-y-6 px-4 py-8 sm:px-6 lg:px-8"
       >
-        <div className="space-y-6">
-          <SummaryCard summary={portfolioData.summary} />
-          <SkillsList skills={portfolioData.skills} />
-          <AchievementsList achievements={portfolioData.achievements} />
-          <EducationSection education={portfolioData.education} />
-          <LanguagesCard languages={portfolioData.languages} />
-        </div>
-
-        <div className="space-y-6">
-          <ExperienceSection
-            title={teachingExperience.title}
-            experiences={teachingExperience.items}
-          />
-          <ExperienceSection
-            title={additionalExperience.title}
-            experiences={additionalExperience.items}
-          />
-        </div>
+        <SummaryCard summary={portfolioData.summary} />
+        <ExperienceSection
+          title={teachingExperience.title}
+          experiences={teachingExperience.items}
+        />
+        <SkillsList skills={portfolioData.skills} />
+        <ExperienceSection
+          title={additionalExperience.title}
+          experiences={additionalExperience.items}
+        />
+        <AchievementsList achievements={portfolioData.achievements} />
+        <EducationSection education={portfolioData.education} />
+        <LanguagesCard languages={portfolioData.languages} />
       </section>
 
       <FooterContact
