@@ -7,20 +7,31 @@ import { gentleTap, listItem, staggerGroup } from "./motion";
 
 type ExperienceItemProps = {
   experience: Experience;
+  variant?: "timeline" | "spotlight";
 };
 
-export function ExperienceItem({ experience }: ExperienceItemProps) {
+export function ExperienceItem({
+  experience,
+  variant = "timeline",
+}: ExperienceItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const preview = experience.bullets[0];
+  const isSpotlight = variant === "spotlight";
 
   return (
     <motion.article
       variants={listItem}
       whileHover={{
         y: -6,
-        boxShadow: "0 18px 40px rgba(50, 70, 59, 0.14)",
+        boxShadow: isSpotlight
+          ? "0 20px 44px rgba(26, 43, 35, 0.18)"
+          : "0 18px 40px rgba(50, 70, 59, 0.14)",
       }}
-      className="motion-card tilt-sheen rounded-[1.5rem] border border-[rgba(217,201,175,0.7)] bg-white/75 p-6 shadow-[0_10px_30px_rgba(50,70,59,0.08)]"
+      className={`motion-card tilt-sheen rounded-[1.5rem] border p-6 shadow-[0_10px_30px_rgba(50,70,59,0.08)] ${
+        isSpotlight
+          ? "border-white/10 bg-white/7"
+          : "border-[rgba(217,201,175,0.7)] bg-white/75"
+      }`}
     >
       <motion.button
         type="button"
@@ -31,15 +42,33 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
       >
         <motion.header variants={staggerGroup(0.03, 0.06)} className="min-w-0 space-y-3">
           <div className="space-y-2">
-            <h3 className="font-heading text-[1.8rem] leading-none font-semibold text-foreground sm:text-[2rem]">
+            <h3
+              className={`font-heading text-[1.8rem] leading-none font-semibold sm:text-[2rem] ${
+                isSpotlight ? "text-[var(--bg)]" : "text-foreground"
+              }`}
+            >
               {experience.title}
             </h3>
-            <p className="text-base italic text-primary sm:text-lg">
+            <p
+              className={`text-base italic sm:text-lg ${
+                isSpotlight ? "text-accent" : "text-primary"
+              }`}
+            >
               {experience.organization}{" "}
-              <span className="not-italic text-muted">| {experience.period}</span>
+              <span
+                className={`not-italic ${
+                  isSpotlight ? "text-white/62" : "text-muted"
+                }`}
+              >
+                | {experience.period}
+              </span>
             </p>
           </div>
-          <p className="max-w-3xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
+          <p
+            className={`max-w-3xl text-sm leading-6 sm:text-base sm:leading-7 ${
+              isSpotlight ? "text-white/76" : "text-muted"
+            }`}
+          >
             {preview}
           </p>
         </motion.header>
@@ -56,7 +85,9 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
             variants={staggerGroup(0.08, 0.05)}
-            className="mt-5 space-y-3 overflow-hidden text-base leading-8 text-muted"
+            className={`mt-5 space-y-3 overflow-hidden text-base leading-8 ${
+              isSpotlight ? "text-white/78" : "text-muted"
+            }`}
           >
             {experience.bullets.map((bullet, index) => (
               <motion.li
@@ -67,7 +98,9 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
                 <motion.span
                   aria-hidden="true"
                   variants={listItem}
-                  className="mt-[0.95rem] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                  className={`mt-[0.95rem] h-1.5 w-1.5 shrink-0 rounded-full ${
+                    isSpotlight ? "bg-white/70" : "bg-accent"
+                  }`}
                 />
                 <span>{bullet}</span>
               </motion.li>

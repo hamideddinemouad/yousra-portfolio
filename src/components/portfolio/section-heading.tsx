@@ -6,12 +6,17 @@ import { fadeUp, lineReveal } from "./motion";
 type SectionHeadingProps = {
   title: string;
   align?: "left" | "right";
+  tone?: "default" | "light";
 };
 
 export function SectionHeading({
   title,
   align = "left",
+  tone = "default",
 }: SectionHeadingProps) {
+  const headingColor =
+    tone === "light" ? "text-[var(--bg)]" : "text-primary";
+
   return (
     <motion.div
       variants={fadeUp(0.04, 18)}
@@ -24,7 +29,7 @@ export function SectionHeading({
       {align === "right" ? <Line /> : null}
       <motion.h2
         variants={fadeUp(0.08, 14)}
-        className="font-heading text-3xl font-semibold uppercase tracking-[0.16em] text-primary sm:text-[2rem]"
+        className={`font-heading text-3xl font-semibold uppercase tracking-[0.16em] ${headingColor} sm:text-[2rem]`}
       >
         {title}
       </motion.h2>

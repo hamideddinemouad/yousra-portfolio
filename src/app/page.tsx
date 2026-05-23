@@ -18,25 +18,21 @@ export default function Home() {
       <ScrollProgress />
       <Hero profile={portfolioData.profile} contact={portfolioData.contact} />
       <ContactRibbon contact={portfolioData.contact} />
-
-      <section
-        aria-label="Portfolio details"
-        className="mx-auto w-full max-w-5xl space-y-6 px-4 py-8 sm:px-6 lg:px-8"
-      >
-        <SummaryCard summary={portfolioData.summary} />
-        <ExperienceSection
-          title={teachingExperience.title}
-          experiences={teachingExperience.items}
-        />
-        <SkillsList skills={portfolioData.skills} />
-        <ExperienceSection
-          title={additionalExperience.title}
-          experiences={additionalExperience.items}
-        />
-        <AchievementsList achievements={portfolioData.achievements} />
-        <EducationSection education={portfolioData.education} />
-        <LanguagesCard languages={portfolioData.languages} />
-      </section>
+      <SummaryCard summary={portfolioData.summary} />
+      <ExperienceSection
+        title={teachingExperience.title}
+        experiences={teachingExperience.items}
+        variant="timeline"
+      />
+      <SkillsList skills={portfolioData.skills} />
+      <ExperienceSection
+        title={additionalExperience.title}
+        experiences={additionalExperience.items}
+        variant="spotlight"
+      />
+      <AchievementsList achievements={portfolioData.achievements} />
+      <EducationSection education={portfolioData.education} />
+      <LanguagesCard languages={portfolioData.languages} />
 
       <FooterContact
         contact={portfolioData.contact}
