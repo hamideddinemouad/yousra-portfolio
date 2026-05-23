@@ -56,10 +56,12 @@ export function SectionNav({ sections }: SectionNavProps) {
     updateActiveSection();
     window.addEventListener("scroll", updateActiveSection, { passive: true });
     window.addEventListener("resize", updateActiveSection);
+    const intervalId = window.setInterval(updateActiveSection, 150);
 
     return () => {
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
+      window.clearInterval(intervalId);
     };
   }, [sections]);
 
@@ -136,6 +138,7 @@ function NavLink({
     <motion.a
       href={`#${section.id}`}
       onClick={onNavigate}
+      aria-current={isActive ? "location" : undefined}
       whileHover={{ y: -1 }}
       whileTap={{ scale: 0.99 }}
       className={`focus-ring inline-flex cursor-pointer items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold tracking-[0.06em] ${

@@ -44,7 +44,7 @@ export function PortfolioPageShell() {
   }
 
   return (
-    <main id="main-content" className="overflow-x-clip pb-10">
+    <main id="main-content" className="overflow-x-clip pb-28 lg:pb-48">
       <ScrollProgress />
       <SectionNav sections={sections} />
       <Hero profile={portfolioData.profile} contact={portfolioData.contact} />
