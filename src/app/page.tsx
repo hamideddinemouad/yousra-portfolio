@@ -5,6 +5,7 @@ import { ExperienceSection } from "@/components/portfolio/experience-section";
 import { FooterContact } from "@/components/portfolio/footer-contact";
 import { Hero } from "@/components/portfolio/hero";
 import { LanguagesCard } from "@/components/portfolio/languages-card";
+import { ScrollProgress } from "@/components/portfolio/scroll-progress";
 import { SkillsList } from "@/components/portfolio/skills-list";
 import { SummaryCard } from "@/components/portfolio/summary-card";
 import { portfolioData } from "@/data/portfolio";
@@ -13,7 +14,8 @@ export default function Home() {
   const [teachingExperience, additionalExperience] = portfolioData.experiences;
 
   return (
-    <main className="pb-10">
+    <main className="overflow-x-clip pb-10">
+      <ScrollProgress />
       <Hero profile={portfolioData.profile} contact={portfolioData.contact} />
       <ContactRibbon contact={portfolioData.contact} />
 

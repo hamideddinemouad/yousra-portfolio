@@ -1,5 +1,9 @@
+"use client";
+
 import { Experience } from "@/types/portfolio";
+import { motion } from "framer-motion";
 import { ExperienceItem } from "./experience-item";
+import { fadeUp, staggerGroup } from "./motion";
 import { SectionHeading } from "./section-heading";
 
 type ExperienceSectionProps = {
@@ -12,15 +16,29 @@ export function ExperienceSection({
   experiences,
 }: ExperienceSectionProps) {
   return (
-    <section className="paper-card reveal-up delay-1 rounded-[1.75rem] p-6 sm:p-7">
+    <motion.section
+      initial="hidden"
+      animate="show"
+      variants={fadeUp(0.03, 28)}
+      whileHover={{ y: -4 }}
+      className="motion-card paper-card rounded-[1.75rem] p-6 sm:p-7"
+    >
       <div className="space-y-6">
         <SectionHeading title={title} />
-        <div className="space-y-5">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={staggerGroup(0.08, 0.1)}
+          className="space-y-5"
+        >
           {experiences.map((experience) => (
-            <ExperienceItem key={`${experience.title}-${experience.period}`} experience={experience} />
+            <ExperienceItem
+              key={`${experience.title}-${experience.period}`}
+              experience={experience}
+            />
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
