@@ -89,13 +89,41 @@ export const portfolioData: PortfolioData = {
     },
   ],
   skills: [
-    "English teaching for beginner and intermediate learners",
-    "Lesson planning, classroom activities, and student engagement",
-    "Grammar instruction, vocabulary development, and reading comprehension",
-    "Speaking practice, pronunciation correction, and communication skills",
-    "One-to-one tutoring, small group instruction, and online teaching",
-    "Student assessment, progress tracking, feedback, and learner support",
-    "Patience, organization, adaptability, creativity, and clear communication",
+    {
+      title: "Learner-Level Instruction",
+      description:
+        "English teaching for beginner and intermediate learners with methods adapted to confidence, pace, and comprehension.",
+    },
+    {
+      title: "Lesson Planning",
+      description:
+        "Structured lesson planning, classroom activities, and student engagement built around clear learning outcomes.",
+    },
+    {
+      title: "Grammar and Reading",
+      description:
+        "Grammar instruction, vocabulary development, and reading comprehension support through guided practice.",
+    },
+    {
+      title: "Speaking Development",
+      description:
+        "Speaking practice, pronunciation correction, and communication skill building for real-world expression.",
+    },
+    {
+      title: "Flexible Teaching Formats",
+      description:
+        "One-to-one tutoring, small group instruction, and online teaching across different learning settings.",
+    },
+    {
+      title: "Assessment and Feedback",
+      description:
+        "Student assessment, progress tracking, feedback, and learner support to reinforce growth over time.",
+    },
+    {
+      title: "Classroom Soft Skills",
+      description:
+        "Patience, organization, adaptability, creativity, and clear communication in student-facing environments.",
+    },
   ],
   achievements: [
     "Graduated with honors",

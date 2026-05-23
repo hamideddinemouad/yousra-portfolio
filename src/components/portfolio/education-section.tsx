@@ -1,17 +1,26 @@
 "use client";
 
 import { EducationItem } from "@/types/portfolio";
-import { motion } from "framer-motion";
-import { listItem, staggerGroup } from "./motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { MobileDisclosureButton } from "./disclosure-controls";
+import { listItem } from "./motion";
 import { SectionHeading } from "./section-heading";
 
 type EducationSectionProps = {
+  id: string;
   education: EducationItem[];
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
-export function EducationSection({ education }: EducationSectionProps) {
+export function EducationSection({
+  id,
+  education,
+  isOpen,
+  onToggle,
+}: EducationSectionProps) {
   return (
-    <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+    <section id={id} className="scroll-mt-28 px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
       <div className="mx-auto max-w-6xl rounded-[2.4rem] border border-[rgba(217,201,175,0.7)] bg-white/82 px-6 py-8 shadow-[0_22px_55px_rgba(50,70,59,0.1)] sm:px-8 lg:px-10">
         <div className="space-y-8">
           <SectionHeading title="Education" />
@@ -24,18 +33,36 @@ export function EducationSection({ education }: EducationSectionProps) {
                 A focused path in English studies supported by strong academic
                 performance and consistent growth.
               </p>
+              <MobileDisclosureButton
+                isOpen={isOpen}
+                openLabel="View education"
+                closeLabel="Hide education"
+                onClick={onToggle}
+              />
             </div>
 
-            <motion.div
-              initial="hidden"
-              animate="show"
-              variants={staggerGroup(0.08, 0.08)}
-              className="relative space-y-6 before:absolute before:left-[1rem] before:top-3 before:bottom-3 before:w-px before:bg-[rgba(199,161,91,0.3)]"
-            >
+            <div className="relative hidden space-y-6 before:absolute before:left-[1rem] before:top-3 before:bottom-3 before:w-px before:bg-[rgba(199,161,91,0.3)] lg:block">
               {education.map((item) => (
                 <EducationItemCard key={`${item.degree}-${item.period}`} item={item} />
               ))}
-            </motion.div>
+            </div>
+
+            <AnimatePresence initial={false}>
+              {isOpen ? (
+                <motion.div
+                  key="education-timeline"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 12 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative space-y-6 before:absolute before:left-[1rem] before:top-3 before:bottom-3 before:w-px before:bg-[rgba(199,161,91,0.3)] lg:hidden"
+                >
+                  {education.map((item) => (
+                    <EducationItemCard key={`${item.degree}-${item.period}`} item={item} />
+                  ))}
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </div>
         </div>
       </div>

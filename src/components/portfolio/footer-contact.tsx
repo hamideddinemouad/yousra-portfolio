@@ -7,18 +7,23 @@ import { fadeUp, gentleHover, gentleTap, listItem, staggerGroup } from "./motion
 import { ResumeDownloadButton } from "./resume-download-button";
 
 type FooterContactProps = {
+  id?: string;
   contact: Contact;
   profile: Profile;
   resumeHref: string;
 };
 
 export function FooterContact({
+  id,
   contact,
   profile,
   resumeHref,
 }: FooterContactProps) {
   return (
-    <footer className="mx-auto mt-4 w-full max-w-7xl px-4 pb-8 sm:px-6 lg:px-8 lg:pb-12">
+    <footer
+      id={id}
+      className="mx-auto mt-4 w-full max-w-7xl scroll-mt-28 px-4 pb-8 sm:px-6 lg:px-8 lg:pb-12"
+    >
       <motion.section
         initial="hidden"
         animate="show"

@@ -47,12 +47,17 @@ export type Language = {
   level: string;
 };
 
+export type SkillItem = {
+  title: string;
+  description: string;
+};
+
 export type PortfolioData = {
   profile: Profile;
   contact: Contact;
   summary: string[];
   experiences: ExperienceGroup[];
-  skills: string[];
+  skills: SkillItem[];
   achievements: string[];
   education: EducationItem[];
   languages: Language[];
